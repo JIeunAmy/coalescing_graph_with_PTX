@@ -1,0 +1,131 @@
+
+Fatbin elf code:
+================
+arch = sm_52
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin elf code:
+================
+arch = sm_52
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_52
+code version = [7,5]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+compressed
+
+
+
+
+
+
+
+
+.version 7.5
+.target sm_52
+.address_size 64
+
+
+
+.visible .entry _Z20convolution3D_kerneliiiPfS_i(
+.param .u32 _Z20convolution3D_kerneliiiPfS_i_param_0,
+.param .u32 _Z20convolution3D_kerneliiiPfS_i_param_1,
+.param .u32 _Z20convolution3D_kerneliiiPfS_i_param_2,
+.param .u64 _Z20convolution3D_kerneliiiPfS_i_param_3,
+.param .u64 _Z20convolution3D_kerneliiiPfS_i_param_4,
+.param .u32 _Z20convolution3D_kerneliiiPfS_i_param_5
+)
+{
+.reg .pred %p<12>;
+.reg .f32 %f<29>;
+.reg .b32 %r<21>;
+.reg .b64 %rd<10>;
+
+
+ld.param.u32 %r4, [_Z20convolution3D_kerneliiiPfS_i_param_0];
+ld.param.u32 %r5, [_Z20convolution3D_kerneliiiPfS_i_param_1];
+ld.param.u32 %r6, [_Z20convolution3D_kerneliiiPfS_i_param_2];
+ld.param.u64 %rd1, [_Z20convolution3D_kerneliiiPfS_i_param_3];
+ld.param.u64 %rd2, [_Z20convolution3D_kerneliiiPfS_i_param_4];
+ld.param.u32 %r3, [_Z20convolution3D_kerneliiiPfS_i_param_5];
+mov.u32 %r7, %ntid.x;
+mov.u32 %r8, %ctaid.x;
+mov.u32 %r9, %tid.x;
+mad.lo.s32 %r1, %r8, %r7, %r9;
+mov.u32 %r10, %ntid.y;
+mov.u32 %r11, %ctaid.y;
+mov.u32 %r12, %tid.y;
+mad.lo.s32 %r2, %r11, %r10, %r12;
+add.s32 %r13, %r4, -1;
+setp.le.s32 %p1, %r13, %r3;
+add.s32 %r14, %r5, -1;
+setp.ge.s32 %p2, %r2, %r14;
+or.pred %p3, %p2, %p1;
+add.s32 %r15, %r6, -1;
+setp.ge.s32 %p4, %r1, %r15;
+or.pred %p5, %p4, %p3;
+setp.lt.s32 %p6, %r3, 1;
+or.pred %p7, %p6, %p5;
+setp.lt.s32 %p8, %r2, 1;
+or.pred %p9, %p8, %p7;
+setp.lt.s32 %p10, %r1, 1;
+or.pred %p11, %p10, %p9;
+@%p11 bra $L__BB0_2;
+
+cvta.to.global.u64 %rd3, %rd1;
+cvta.to.global.u64 %rd4, %rd2;
+shl.b32 %r16, %r2, 8;
+add.s32 %r17, %r16, %r1;
+shl.b32 %r18, %r3, 16;
+add.s32 %r19, %r17, %r18;
+add.s32 %r20, %r19, -65793;
+mul.wide.s32 %rd5, %r20, 4;
+add.s64 %rd6, %rd3, %rd5;
+ld.global.f32 %f1, [%rd6];
+ld.global.f32 %f2, [%rd6+524288];
+mul.f32 %f3, %f2, 0f40800000;
+fma.rn.f32 %f4, %f1, 0f40000000, %f3;
+fma.rn.f32 %f5, %f1, 0f40A00000, %f4;
+fma.rn.f32 %f6, %f2, 0f40E00000, %f5;
+mul.f32 %f7, %f1, 0f41000000;
+sub.f32 %f8, %f6, %f7;
+fma.rn.f32 %f9, %f2, 0f41200000, %f8;
+ld.global.f32 %f10, [%rd6+262148];
+fma.rn.f32 %f11, %f10, 0fC0400000, %f9;
+mul.wide.s32 %rd7, %r19, 4;
+add.s64 %rd8, %rd3, %rd7;
+ld.global.f32 %f12, [%rd8];
+fma.rn.f32 %f13, %f12, 0f40C00000, %f11;
+ld.global.f32 %f14, [%rd6+264196];
+fma.rn.f32 %f15, %f14, 0fC1100000, %f13;
+ld.global.f32 %f16, [%rd6+8];
+fma.rn.f32 %f17, %f16, 0f40000000, %f15;
+ld.global.f32 %f18, [%rd6+524296];
+fma.rn.f32 %f19, %f18, 0f40800000, %f17;
+ld.global.f32 %f20, [%rd6+1032];
+fma.rn.f32 %f21, %f20, 0f40A00000, %f19;
+ld.global.f32 %f22, [%rd6+525320];
+fma.rn.f32 %f23, %f22, 0f40E00000, %f21;
+ld.global.f32 %f24, [%rd6+2056];
+mul.f32 %f25, %f24, 0f41000000;
+sub.f32 %f26, %f23, %f25;
+ld.global.f32 %f27, [%rd6+526344];
+fma.rn.f32 %f28, %f27, 0f41200000, %f26;
+add.s64 %rd9, %rd4, %rd7;
+st.global.f32 [%rd9], %f28;
+
+$L__BB0_2:
+ret;
+
+}
+

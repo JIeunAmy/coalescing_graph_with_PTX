@@ -1,0 +1,93 @@
+
+
+
+
+
+
+
+
+.version 7.5
+.target sm_52
+.address_size 64
+
+
+
+.visible .entry _Z6kernelPdS_S_S_S_S_i(
+.param .u64 _Z6kernelPdS_S_S_S_S_i_param_0,
+.param .u64 _Z6kernelPdS_S_S_S_S_i_param_1,
+.param .u64 _Z6kernelPdS_S_S_S_S_i_param_2,
+.param .u64 _Z6kernelPdS_S_S_S_S_i_param_3,
+.param .u64 _Z6kernelPdS_S_S_S_S_i_param_4,
+.param .u64 _Z6kernelPdS_S_S_S_S_i_param_5,
+.param .u32 _Z6kernelPdS_S_S_S_S_i_param_6
+)
+{
+.reg .pred %p<6>;
+.reg .b32 %r<16>;
+.reg .f64 %fd<5>;
+.reg .b64 %rd<23>;
+
+
+ld.param.u64 %rd2, [_Z6kernelPdS_S_S_S_S_i_param_0];
+ld.param.u64 %rd3, [_Z6kernelPdS_S_S_S_S_i_param_1];
+ld.param.u64 %rd4, [_Z6kernelPdS_S_S_S_S_i_param_2];
+ld.param.u64 %rd5, [_Z6kernelPdS_S_S_S_S_i_param_3];
+ld.param.u64 %rd6, [_Z6kernelPdS_S_S_S_S_i_param_4];
+ld.param.u64 %rd7, [_Z6kernelPdS_S_S_S_S_i_param_5];
+ld.param.u32 %r5, [_Z6kernelPdS_S_S_S_S_i_param_6];
+mov.u32 %r6, %ntid.x;
+mov.u32 %r7, %ctaid.x;
+mov.u32 %r8, %tid.x;
+mad.lo.s32 %r1, %r6, %r7, %r8;
+setp.ge.s32 %p1, %r1, %r5;
+@%p1 bra $L__BB0_6;
+
+setp.lt.s32 %p2, %r5, 1;
+mov.u32 %r9, -1;
+mov.u32 %r15, %r9;
+@%p2 bra $L__BB0_5;
+
+cvta.to.global.u64 %rd8, %rd5;
+cvta.to.global.u64 %rd1, %rd4;
+mul.wide.s32 %rd9, %r1, 8;
+add.s64 %rd10, %rd8, %rd9;
+ld.global.f64 %fd1, [%rd10];
+mov.u32 %r14, 0;
+
+$L__BB0_3:
+mul.wide.s32 %rd11, %r14, 8;
+add.s64 %rd12, %rd1, %rd11;
+ld.global.f64 %fd2, [%rd12];
+setp.ge.f64 %p3, %fd2, %fd1;
+mov.u32 %r15, %r14;
+@%p3 bra $L__BB0_5;
+
+add.s32 %r14, %r14, 1;
+setp.lt.s32 %p4, %r14, %r5;
+mov.u32 %r15, %r9;
+@%p4 bra $L__BB0_3;
+
+$L__BB0_5:
+cvta.to.global.u64 %rd13, %rd7;
+cvta.to.global.u64 %rd14, %rd3;
+cvta.to.global.u64 %rd15, %rd6;
+cvta.to.global.u64 %rd16, %rd2;
+add.s32 %r12, %r5, -1;
+setp.eq.s32 %p5, %r15, -1;
+selp.b32 %r13, %r12, %r15, %p5;
+mul.wide.s32 %rd17, %r13, 8;
+add.s64 %rd18, %rd16, %rd17;
+ld.global.f64 %fd3, [%rd18];
+mul.wide.s32 %rd19, %r1, 8;
+add.s64 %rd20, %rd15, %rd19;
+st.global.f64 [%rd20], %fd3;
+add.s64 %rd21, %rd14, %rd17;
+ld.global.f64 %fd4, [%rd21];
+add.s64 %rd22, %rd13, %rd19;
+st.global.f64 [%rd22], %fd4;
+
+$L__BB0_6:
+ret;
+
+}
+

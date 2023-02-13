@@ -1,0 +1,237 @@
+
+Fatbin elf code:
+================
+arch = sm_52
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin elf code:
+================
+arch = sm_52
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_52
+code version = [7,5]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+compressed
+
+
+
+
+
+
+
+
+.version 7.5
+.target sm_52
+.address_size 64
+
+
+
+.visible .entry _Z19kernel_compute_costiilP5PointiiPfS1_PiPb(
+.param .u32 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_0,
+.param .u32 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_1,
+.param .u64 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_2,
+.param .u64 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_3,
+.param .u32 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_4,
+.param .u32 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_5,
+.param .u64 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_6,
+.param .u64 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_7,
+.param .u64 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_8,
+.param .u64 _Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_9
+)
+{
+.reg .pred %p<8>;
+.reg .b16 %rs<2>;
+.reg .f32 %f<45>;
+.reg .b32 %r<35>;
+.reg .b64 %rd<56>;
+
+
+ld.param.u32 %r14, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_0];
+ld.param.u32 %r15, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_1];
+ld.param.u64 %rd20, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_2];
+ld.param.u64 %rd21, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_3];
+ld.param.u32 %r16, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_4];
+ld.param.u32 %r17, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_5];
+ld.param.u64 %rd24, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_6];
+ld.param.u64 %rd25, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_7];
+ld.param.u64 %rd22, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_8];
+ld.param.u64 %rd23, [_Z19kernel_compute_costiilP5PointiiPfS1_PiPb_param_9];
+cvta.to.global.u64 %rd1, %rd24;
+cvta.to.global.u64 %rd2, %rd25;
+mov.u32 %r18, %ctaid.y;
+mov.u32 %r19, %nctaid.x;
+mov.u32 %r20, %ctaid.x;
+mad.lo.s32 %r21, %r19, %r18, %r20;
+mov.u32 %r22, %ntid.x;
+mul.lo.s32 %r1, %r21, %r22;
+mov.u32 %r2, %tid.x;
+add.s32 %r3, %r1, %r2;
+setp.ge.s32 %p1, %r3, %r14;
+@%p1 bra $L__BB0_11;
+
+mul.lo.s32 %r23, %r3, %r17;
+cvt.s64.s32 %rd3, %r23;
+cvt.u32.u64 %r4, %rd20;
+setp.lt.s32 %p2, %r15, 1;
+mov.f32 %f44, 0f00000000;
+@%p2 bra $L__BB0_8;
+
+add.s32 %r25, %r15, -1;
+and.b32 %r34, %r15, 3;
+setp.lt.u32 %p3, %r25, 3;
+mov.f32 %f44, 0f00000000;
+mov.u32 %r33, 0;
+@%p3 bra $L__BB0_5;
+
+sub.s32 %r32, %r15, %r34;
+mul.wide.s32 %rd26, %r3, 4;
+add.s64 %rd52, %rd1, %rd26;
+mul.wide.s32 %rd5, %r14, 4;
+mul.wide.s32 %rd27, %r4, 4;
+add.s64 %rd53, %rd1, %rd27;
+
+$L__BB0_4:
+ld.global.f32 %f14, [%rd53];
+ld.global.f32 %f15, [%rd52];
+sub.f32 %f16, %f15, %f14;
+fma.rn.f32 %f17, %f16, %f16, %f44;
+add.s64 %rd28, %rd52, %rd5;
+add.s64 %rd29, %rd53, %rd5;
+ld.global.f32 %f18, [%rd29];
+ld.global.f32 %f19, [%rd28];
+sub.f32 %f20, %f19, %f18;
+fma.rn.f32 %f21, %f20, %f20, %f17;
+add.s64 %rd30, %rd28, %rd5;
+add.s64 %rd31, %rd29, %rd5;
+ld.global.f32 %f22, [%rd31];
+ld.global.f32 %f23, [%rd30];
+sub.f32 %f24, %f23, %f22;
+fma.rn.f32 %f25, %f24, %f24, %f21;
+add.s64 %rd32, %rd30, %rd5;
+add.s64 %rd52, %rd32, %rd5;
+add.s64 %rd33, %rd31, %rd5;
+add.s64 %rd53, %rd33, %rd5;
+ld.global.f32 %f26, [%rd33];
+ld.global.f32 %f27, [%rd32];
+sub.f32 %f28, %f27, %f26;
+fma.rn.f32 %f44, %f28, %f28, %f25;
+add.s32 %r33, %r33, 4;
+add.s32 %r32, %r32, -4;
+setp.ne.s32 %p4, %r32, 0;
+@%p4 bra $L__BB0_4;
+
+$L__BB0_5:
+setp.eq.s32 %p5, %r34, 0;
+@%p5 bra $L__BB0_8;
+
+mul.lo.s32 %r27, %r33, %r14;
+add.s32 %r28, %r27, %r4;
+mul.wide.s32 %rd34, %r28, 4;
+add.s64 %rd55, %rd1, %rd34;
+mul.wide.s32 %rd12, %r14, 4;
+add.s32 %r29, %r2, %r27;
+add.s32 %r30, %r29, %r1;
+mul.wide.s32 %rd35, %r30, 4;
+add.s64 %rd54, %rd1, %rd35;
+
+$L__BB0_7:
+.pragma "nounroll";
+ld.global.f32 %f29, [%rd55];
+ld.global.f32 %f30, [%rd54];
+sub.f32 %f31, %f30, %f29;
+fma.rn.f32 %f44, %f31, %f31, %f44;
+add.s64 %rd55, %rd55, %rd12;
+add.s64 %rd54, %rd54, %rd12;
+add.s32 %r34, %r34, -1;
+setp.ne.s32 %p6, %r34, 0;
+@%p6 bra $L__BB0_7;
+
+$L__BB0_8:
+cvt.s64.s32 %rd18, %r3;
+cvta.to.global.u64 %rd36, %rd21;
+mul.wide.s32 %rd37, %r3, 32;
+add.s64 %rd19, %rd36, %rd37;
+ld.global.f32 %f32, [%rd19];
+mul.f32 %f8, %f44, %f32;
+ld.global.f32 %f9, [%rd19+24];
+setp.lt.f32 %p7, %f8, %f9;
+@%p7 bra $L__BB0_10;
+bra.uni $L__BB0_9;
+
+$L__BB0_10:
+cvta.to.global.u64 %rd46, %rd23;
+add.s64 %rd47, %rd46, %rd18;
+mov.u16 %rs1, 1;
+st.global.u8 [%rd47], %rs1;
+ld.global.f32 %f36, [%rd19+24];
+sub.f32 %f37, %f8, %f36;
+cvt.s64.s32 %rd48, %r16;
+add.s64 %rd49, %rd3, %rd48;
+shl.b64 %rd50, %rd49, 2;
+add.s64 %rd51, %rd2, %rd50;
+ld.global.f32 %f38, [%rd51];
+add.f32 %f39, %f38, %f37;
+st.global.f32 [%rd51], %f39;
+bra.uni $L__BB0_11;
+
+$L__BB0_9:
+sub.f32 %f33, %f9, %f8;
+ld.global.u64 %rd38, [%rd19+16];
+cvta.to.global.u64 %rd39, %rd22;
+shl.b64 %rd40, %rd38, 2;
+add.s64 %rd41, %rd39, %rd40;
+ld.global.s32 %rd42, [%rd41];
+add.s64 %rd43, %rd42, %rd3;
+shl.b64 %rd44, %rd43, 2;
+add.s64 %rd45, %rd2, %rd44;
+ld.global.f32 %f34, [%rd45];
+add.f32 %f35, %f33, %f34;
+st.global.f32 [%rd45], %f35;
+
+$L__BB0_11:
+ret;
+
+}
+
+
+Fatbin elf code:
+================
+arch = sm_52
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_52
+code version = [7,5]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+compressed
+
+
+
+
+
+
+
+
+.version 7.5
+.target sm_52
+.address_size 64
+
+
+

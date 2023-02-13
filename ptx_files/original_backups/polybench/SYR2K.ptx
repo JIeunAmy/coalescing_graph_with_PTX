@@ -1,0 +1,200 @@
+
+Fatbin elf code:
+================
+arch = sm_52
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin elf code:
+================
+arch = sm_52
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_52
+code version = [7,5]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+compressed
+
+
+
+
+
+
+
+
+.version 7.5
+.target sm_52
+.address_size 64
+
+
+
+.visible .entry _Z12syr2k_kerneliiffPfS_S_(
+.param .u32 _Z12syr2k_kerneliiffPfS_S__param_0,
+.param .u32 _Z12syr2k_kerneliiffPfS_S__param_1,
+.param .f32 _Z12syr2k_kerneliiffPfS_S__param_2,
+.param .f32 _Z12syr2k_kerneliiffPfS_S__param_3,
+.param .u64 _Z12syr2k_kerneliiffPfS_S__param_4,
+.param .u64 _Z12syr2k_kerneliiffPfS_S__param_5,
+.param .u64 _Z12syr2k_kerneliiffPfS_S__param_6
+)
+{
+.reg .pred %p<5>;
+.reg .f32 %f<79>;
+.reg .b32 %r<25>;
+.reg .b64 %rd<29>;
+
+
+ld.param.f32 %f4, [_Z12syr2k_kerneliiffPfS_S__param_2];
+ld.param.f32 %f5, [_Z12syr2k_kerneliiffPfS_S__param_3];
+ld.param.u64 %rd12, [_Z12syr2k_kerneliiffPfS_S__param_4];
+ld.param.u64 %rd13, [_Z12syr2k_kerneliiffPfS_S__param_5];
+ld.param.u64 %rd14, [_Z12syr2k_kerneliiffPfS_S__param_6];
+mov.u32 %r8, %ntid.x;
+mov.u32 %r9, %ctaid.x;
+mul.lo.s32 %r1, %r9, %r8;
+mov.u32 %r2, %tid.x;
+add.s32 %r3, %r1, %r2;
+mov.u32 %r10, %ntid.y;
+mov.u32 %r11, %ctaid.y;
+mul.lo.s32 %r4, %r11, %r10;
+mov.u32 %r12, %tid.y;
+add.s32 %r5, %r4, %r12;
+setp.gt.s32 %p1, %r5, 1023;
+setp.gt.s32 %p2, %r3, 1023;
+or.pred %p3, %p1, %p2;
+@%p3 bra $L__BB0_3;
+
+cvta.to.global.u64 %rd15, %rd14;
+shl.b32 %r14, %r5, 10;
+add.s32 %r15, %r14, %r3;
+mul.wide.s32 %rd16, %r15, 4;
+add.s64 %rd1, %rd15, %rd16;
+ld.global.f32 %f6, [%rd1];
+mul.f32 %f78, %f6, %f5;
+st.global.f32 [%rd1], %f78;
+shl.b32 %r16, %r3, 10;
+mul.wide.s32 %rd2, %r16, 4;
+mul.wide.s32 %rd3, %r14, 4;
+shl.b32 %r18, %r12, 10;
+shl.b32 %r19, %r4, 10;
+add.s32 %r20, %r19, %r18;
+mul.wide.s32 %rd17, %r20, 4;
+or.b64 %rd4, %rd17, 16;
+shl.b32 %r21, %r2, 10;
+shl.b32 %r22, %r1, 10;
+add.s32 %r23, %r22, %r21;
+mul.wide.s32 %rd18, %r23, 4;
+or.b64 %rd5, %rd18, 16;
+cvta.to.global.u64 %rd27, %rd12;
+cvta.to.global.u64 %rd28, %rd13;
+mov.u32 %r24, 0;
+
+$L__BB0_2:
+add.s64 %rd19, %rd27, %rd3;
+ld.global.f32 %f7, [%rd19];
+mul.f32 %f8, %f7, %f4;
+add.s64 %rd20, %rd28, %rd2;
+ld.global.f32 %f9, [%rd20];
+add.s64 %rd21, %rd28, %rd3;
+ld.global.f32 %f10, [%rd21];
+mul.f32 %f11, %f10, %f4;
+add.s64 %rd22, %rd27, %rd2;
+ld.global.f32 %f12, [%rd22];
+mul.f32 %f13, %f11, %f12;
+fma.rn.f32 %f14, %f8, %f9, %f13;
+add.f32 %f15, %f78, %f14;
+st.global.f32 [%rd1], %f15;
+add.s64 %rd23, %rd27, %rd4;
+ld.global.f32 %f16, [%rd23+-12];
+mul.f32 %f17, %f16, %f4;
+add.s64 %rd24, %rd28, %rd5;
+ld.global.f32 %f18, [%rd24+-12];
+add.s64 %rd25, %rd28, %rd4;
+ld.global.f32 %f19, [%rd25+-12];
+mul.f32 %f20, %f19, %f4;
+add.s64 %rd26, %rd27, %rd5;
+ld.global.f32 %f21, [%rd26+-12];
+mul.f32 %f22, %f20, %f21;
+fma.rn.f32 %f23, %f17, %f18, %f22;
+add.f32 %f24, %f15, %f23;
+st.global.f32 [%rd1], %f24;
+ld.global.f32 %f25, [%rd23+-8];
+mul.f32 %f26, %f25, %f4;
+ld.global.f32 %f27, [%rd24+-8];
+ld.global.f32 %f28, [%rd25+-8];
+mul.f32 %f29, %f28, %f4;
+ld.global.f32 %f30, [%rd26+-8];
+mul.f32 %f31, %f29, %f30;
+fma.rn.f32 %f32, %f26, %f27, %f31;
+add.f32 %f33, %f24, %f32;
+st.global.f32 [%rd1], %f33;
+ld.global.f32 %f34, [%rd23+-4];
+mul.f32 %f35, %f34, %f4;
+ld.global.f32 %f36, [%rd24+-4];
+ld.global.f32 %f37, [%rd25+-4];
+mul.f32 %f38, %f37, %f4;
+ld.global.f32 %f39, [%rd26+-4];
+mul.f32 %f40, %f38, %f39;
+fma.rn.f32 %f41, %f35, %f36, %f40;
+add.f32 %f42, %f33, %f41;
+st.global.f32 [%rd1], %f42;
+ld.global.f32 %f43, [%rd23];
+mul.f32 %f44, %f43, %f4;
+ld.global.f32 %f45, [%rd24];
+ld.global.f32 %f46, [%rd25];
+mul.f32 %f47, %f46, %f4;
+ld.global.f32 %f48, [%rd26];
+mul.f32 %f49, %f47, %f48;
+fma.rn.f32 %f50, %f44, %f45, %f49;
+add.f32 %f51, %f42, %f50;
+st.global.f32 [%rd1], %f51;
+ld.global.f32 %f52, [%rd23+4];
+mul.f32 %f53, %f52, %f4;
+ld.global.f32 %f54, [%rd24+4];
+ld.global.f32 %f55, [%rd25+4];
+mul.f32 %f56, %f55, %f4;
+ld.global.f32 %f57, [%rd26+4];
+mul.f32 %f58, %f56, %f57;
+fma.rn.f32 %f59, %f53, %f54, %f58;
+add.f32 %f60, %f51, %f59;
+st.global.f32 [%rd1], %f60;
+ld.global.f32 %f61, [%rd23+8];
+mul.f32 %f62, %f61, %f4;
+ld.global.f32 %f63, [%rd24+8];
+ld.global.f32 %f64, [%rd25+8];
+mul.f32 %f65, %f64, %f4;
+ld.global.f32 %f66, [%rd26+8];
+mul.f32 %f67, %f65, %f66;
+fma.rn.f32 %f68, %f62, %f63, %f67;
+add.f32 %f69, %f60, %f68;
+st.global.f32 [%rd1], %f69;
+ld.global.f32 %f70, [%rd23+12];
+mul.f32 %f71, %f70, %f4;
+ld.global.f32 %f72, [%rd24+12];
+ld.global.f32 %f73, [%rd25+12];
+mul.f32 %f74, %f73, %f4;
+ld.global.f32 %f75, [%rd26+12];
+mul.f32 %f76, %f74, %f75;
+fma.rn.f32 %f77, %f71, %f72, %f76;
+add.f32 %f78, %f69, %f77;
+st.global.f32 [%rd1], %f78;
+add.s64 %rd28, %rd28, 32;
+add.s64 %rd27, %rd27, 32;
+add.s32 %r24, %r24, 8;
+setp.ne.s32 %p4, %r24, 1024;
+@%p4 bra $L__BB0_2;
+
+$L__BB0_3:
+ret;
+
+}
+
