@@ -358,12 +358,12 @@ def get_threadID(nctaid_x,nctaid_y,ntid_x,ntid_y,file_name,param_file_name, form
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-a",help="file_name",default="GEMM_2_8_32_8")
+    parser.add_argument("-f",help="file_name",default="GEMM_2_8_32_8")
     parser.add_argument("-d",help="directory",default="syntax_tree/")
     parser.add_argument("-t",help="thread change",default="")
     parser.add_argument("-s",help="shared mode",default=0,type=int)
     args = parser.parse_args()
-    file_name = args.a
+    file_name = args.f
     dir_name = args.d
     change_th = args.t
    
