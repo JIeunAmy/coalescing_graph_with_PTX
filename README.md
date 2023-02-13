@@ -22,5 +22,6 @@ ex) python3 locality_guru.py -f GEMM_2_8_32_8.ptx
 python3 locality_map_coalescing.py -f FILE_NAME
 ```
 ex)python3 locality_map_coalescing.py -f GEMM_2_8_32_8
+
 The result is saved in result_img directory
 
