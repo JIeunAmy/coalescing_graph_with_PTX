@@ -1,6 +1,8 @@
 # coalescing_graph_with_PTX
 ## Requirements
+```bash
 pip install -r requirements.txt
+```
 ## Usage
 ### Step 0
 make PTX code from execution file
