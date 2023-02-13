@@ -9,7 +9,7 @@ make PTX code from execution file
 ```bash
 cuobjdump -ptx EXECTION_FILE
 ```
-And name the ptx file with thread block id and thread id
+name the ptx file with thread block id and thread id and save it in original/
 ex) GEMM_2_8_32_8.ptx
 ### Step 1
 make syntax tree based on PTX code
